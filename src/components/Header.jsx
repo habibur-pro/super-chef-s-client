@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { HiXMark, HiOutlineBars3 } from "react-icons/hi2";
 import { Link, NavLink } from 'react-router-dom';
 import logo from '../assets/logo.png'
-
+import { Divide as Hamburger } from 'hamburger-react'
 const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false)
+    const [isOpen, setOpen] = useState(false)
     const links = [
         { name: 'Home', path: '/' },
         { name: 'Blog', path: '/blog' },
@@ -20,11 +21,18 @@ const Navbar = () => {
                         <img className='w-10 mr-2' src={logo} alt="" /> <span className='font-super ' >Super Chef'S</span>
                     </span>
                 </Link>
-                <div onClick={() => setMenuOpen(!menuOpen)} className='text-3xl absolute top-6 right-6 md:hidden'>
+                <div onClick={() => setMenuOpen(!menuOpen)} className='text-3xl absolute top-1.5 right-6 md:hidden'>
                     {
-                        menuOpen ? <HiXMark></HiXMark>
-                            :
-                            <HiOutlineBars3></HiOutlineBars3>
+                        // menuOpen ? <HiXMark></HiXMark>
+                        //     :
+                        //     <HiOutlineBars3></HiOutlineBars3>
+                        <Hamburger
+                            toggled={isOpen} toggle={setOpen}
+                            direction="right"
+                            size={22}
+                            duration={0.6}
+                        // easing="ease-in"
+                        />
                     }
                 </div>
                 <ul className={` font-super md:flex md:flex-row flex-col  absolute md:static  left-0 bg-white md:bg-auto w-full md:w-auto pb-12 md:pb-0 md:z-auto z-[-1] transition-all duration-500  easy-in   ${menuOpen ? 'top-[68px] ' : 'top-[-500px] '}`}>

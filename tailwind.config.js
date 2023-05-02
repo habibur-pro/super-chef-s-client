@@ -5,15 +5,18 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
-    colors: {
-      white: '#FFFFFF',
-      my_primary: '#e4542a'
-    },
+    extend: {
+      colors: {
+        white: '#FFFFFF',
+        my_primary: '#e4542a'
+      },
+
     fontFamily: {
       my: 'LemonadeStand',
       super: 'Bruno Ace SC'
     }
+    },
+
   },
   plugins: [],
 }
