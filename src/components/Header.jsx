@@ -28,7 +28,7 @@ const Navbar = () => {
 
 
     return (
-        <div className='shadow-md w-full fixed top-0 '>
+        <div className='shadow-md w-full fixed top-0 z-40 '>
             <div className='md:flex justify-between items-center bg-white py-2 md:px-10 px-7 '>
                 <Link to='/'>
                     <span className='text-2xl text-my_primary font-extrabold inline-flex items-center'>
