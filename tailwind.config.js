@@ -8,7 +8,8 @@ export default {
     extend: {
       colors: {
         white: '#FFFFFF',
-        my_primary: '#e4542a'
+        my_primary: '#e4542a',
+        primary_hover:'#ff8b00'
       },
 
     fontFamily: {
