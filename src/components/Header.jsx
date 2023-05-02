@@ -5,9 +5,11 @@ import logo from '../assets/logo.png'
 import { Divide as Hamburger } from 'hamburger-react'
 import { AuthContext } from '../routes/AuthProvider';
 
-const Navbar = () => {
-    const { user } = useContext(AuthContext)
 
+const Navbar = () => {
+
+    const { user, createUserWithGoogle } = useContext(AuthContext)
+    // console.log(user)
     const [isOpen, setOpen] = useState(false)
 
 
@@ -16,6 +18,13 @@ const Navbar = () => {
         { name: 'Blog', path: '/blog' },
 
     ]
+    const handelLogin = () => {
+        createUserWithGoogle()
+            .then(result => {
+                console.log(result.user)
+            })
+            .catch(error => console.log(error))
+    }
 
 
     return (
@@ -60,7 +69,7 @@ const Navbar = () => {
                             </NavLink>
                         </li>)
                     }
-                    <button className='my-button'>Sign in</button>
+                    <button onClick={handelLogin} className='my-button'>Sign in</button>
                 </ul>
 
             </div>

@@ -11,10 +11,12 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <Main />,
+        loader: () => fetch('http://localhost:5000/chefsdata'),
         children: [
             {
                 path: '/',
-                element: <Home />
+                element: <Home />,
+
             },
             {
                 path: '/login',
