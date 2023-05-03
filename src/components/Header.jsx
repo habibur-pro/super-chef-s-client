@@ -8,22 +8,21 @@ import { AuthContext } from '../routes/AuthProvider';
 
 const Navbar = () => {
 
-    const { user, createUserWithGoogle } = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext)
+    console.log('user from header', user)
     // console.log(user)
-    const [isOpen, setOpen] = useState(false)
-
+    const [isMenuOpen, setMenuOpen] = useState(false)
 
     const links = [
         { name: 'Home', path: '/' },
         { name: 'Blog', path: '/blog' },
 
     ]
-    const handelLogin = () => {
-        createUserWithGoogle()
-            .then(result => {
-                console.log(result.user)
-            })
-            .catch(error => console.log(error))
+
+    // logOut handler 
+    const handleLogOut = () => {
+        logOut()
+
     }
 
 
@@ -35,13 +34,13 @@ const Navbar = () => {
                         <img className='w-10 mr-2' src={logo} alt="" /> <span className='font-super ' >Super Chef'S</span>
                     </span>
                 </Link>
-                <div onClick={() => setOpen(!isOpen)} className='text-3xl absolute top-1.5 right-6 md:hidden'>
+                <div onClick={() => setMenuOpen(!isMenuOpen)} className='text-3xl absolute top-1.5 right-6 md:hidden'>
                     {
                         // menuOpen ? <HiXMark></HiXMark>
                         //     :
                         //     <HiOutlineBars3></HiOutlineBars3>
                         <Hamburger
-                            toggled={isOpen} toggle={setOpen}
+                            toggled={isMenuOpen} toggle={setMenuOpen}
                             direction="right"
                             size={22}
                             duration={0.6}
@@ -49,9 +48,9 @@ const Navbar = () => {
                         />
                     }
                 </div>
-                <ul className={` font-super md:flex md:flex-row flex-col  absolute md:static  left-0 bg-white md:bg-auto w-full md:w-auto pb-12 md:pb-0 md:z-auto z-[-1] transition-all duration-500  easy-in   ${isOpen ? 'top-[68px] ' : 'top-[-500px] '}`}>
+                <ul className={` font-super md:flex md:flex-row flex-col  absolute md:static  left-0 bg-white md:bg-auto w-full md:w-auto pb-12 md:pb-0 md:z-auto z-[-1] transition-all duration-500  easy-in   ${isMenuOpen ? 'top-[68px] ' : 'top-[-500px] '}`}>
                     {
-                        isOpen && <p className='divide-x border border-my_primary md:hidden w-full border-2'></p>
+                        isMenuOpen && <p className='divide-x border border-my_primary md:hidden w-full border-2'></p>
                     }
                     {
                         links.map(link => <li
@@ -69,7 +68,19 @@ const Navbar = () => {
                             </NavLink>
                         </li>)
                     }
-                    <button onClick={handelLogin} className='my-button'>Sign in</button>
+                    {
+                        user ?
+                            <div className='flex items-center gap-3'>
+                                <div className='relative'>
+                                    <img title={user?.displayName ? user.displayName : ''} className='border w-12 h-12 rounded-full' src={user?.photoURL} />
+
+                                </div>
+
+                                <button onClick={handleLogOut} className='my-button'>Sign Out</button>
+                            </div>
+                            :
+                            <Link to='/login'><button className='my-button'>Sign in</button></Link>
+                    }
                 </ul>
 
             </div>

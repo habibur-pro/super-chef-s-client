@@ -5,5 +5,5 @@
     @apply px-4 py-16 mx-auto sm:max-w-full md:max-w-full lg:max-w-screen-xl md:px-12  lg:px-24 lg:py-20
 }
 .my-button{
-    @apply px-5 ml-8 md:ml-0  py-2 bg-my_primary text-white rounded text-sm font-semibold duration-300 hover:bg-primary_hover
+    @apply px-5  ml-8 md:ml-0  py-2 bg-my_primary text-white rounded text-sm font-semibold duration-300 hover:bg-primary_hover
 }

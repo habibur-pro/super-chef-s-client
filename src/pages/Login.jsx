@@ -1,34 +1,79 @@
-import React, { useState } from 'react';
-import background from '../assets/background.png'
+import React, { useContext, useState } from 'react';
 import loginImage from '../assets/login-image.jpg'
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { FcGoogle, } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
+import { AuthContext } from '../routes/AuthProvider';
 
-const Login = () => {
+const Register = () => {
+    const { user, loginWithGoogle, loginWithGithub, loginWthEmailPassword } = useContext(AuthContext)
+    const [showPassword, setShowPassword] = useState(false)
+    const [isTermsArgree, setTermsAgree] = useState(false)
+    const [error, setError] = useState('')
 
-    const [isShowPass, setShowPass] = useState(false)
+    // login handler 
+    const handleLogin = (event) => {
+        setError('')
+        event.preventDefault()
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
 
+        if (password.length < 6) {
+            return setError('password will be 6 character or upper')
+
+        }
+
+        // email password login hanler 
+        loginWthEmailPassword(email, password)
+            .then(result => {
+                console.log('login user', result.user)
+            })
+            .catch(error => setError(error.code))
+
+    }
+
+    // google login handler 
+    const googleLoginHandler = () => {
+        setError('')
+        loginWithGoogle()
+            .then(result => {
+                console.log('google login', result.user)
+            })
+            .catch(error => setError(error))
+
+    }
+    // github login handler 
+    const githubLoginHandler = () => {
+        setError('')
+        loginWithGithub()
+            .then(result => {
+                console.log('github login', result.user)
+            })
+            .catch(error => setError(error))
+
+    }
 
     return (
         <div id='loginPage' className='w-screen, h-[calc(100vh-72px)] pt-10 flex justify-center items-center'>
-            <div className='my-container'>
-                <div className='grid grid-cols-1 md:gap-3 md:grid-cols-2  border shadow-2xl rounded'>
-                    <div>
+            <div className='  '>
+                <div className=' w-full grid grid-cols-1  md:grid-cols-5  border md:shadow-2xl rounded'>
+                    <div className='md:col-span-3'>
                         <img className='h-full w-full' src={loginImage} alt="" />
                     </div>
                     {/* fomr containr  */}
 
-                    <div className='flex justify-center flex-col px-10 py-10'>
+                    <div className='md:col-span-2 flex justify-center flex-col px-10 py-10 bg-white '>
                         <h3 className='font-bold text-2xl text-center text-gray-700'>Sign In</h3>
 
-                        <form className=''>
+                        <form onSubmit={handleLogin} className=''>
+                            {/* email field */}
                             <div className='my-4'>
                                 <label className='block font-gray-700 text-md'>Email</label>
-                                <div className='w-full border flex  items-center py-2'>
-                                    <input h-full
-                                        className='  border-0 w-full  border-gray-300 outline-none rounded pl-3 py-1'
+                                <div className='w-full border flex  items-center py-1.5'>
+                                    <input
+                                        className='  border-0 w-full  border-gray-300 outline-none rounded pl-3 '
                                         name='email'
                                         type='email'
                                         required
@@ -36,42 +81,62 @@ const Login = () => {
 
                                 </div>
                             </div>
+                            {/* password field  */}
                             <div className='my-4'>
                                 <label className='block font-gray-700 text-md'>Password</label>
-                                <div className='w-full border flex py-2 items-center'>
+                                <div className='w-full border flex py-1.5 items-center'>
                                     <input
-                                        className='  border-0 w-full  border-gray-300 outline-none rounded pl-3 py-1'
-                                        name='email'
-                                        type={isShowPass ? 'text' : 'password'}
+                                        className='  border-0 w-full  border-gray-300 outline-none rounded pl-3 '
+                                        name='password'
+                                        type={showPassword ? 'text' : 'password'}
                                         required
                                     />
-                                    <span className='text-xl text-gray-700' onClick={() => setShowPass(!isShowPass)}>
+                                    <span className='text-xl text-gray-700' onClick={() => setShowPassword(!showPassword)}>
                                         {
-                                            isShowPass ? <FaEyeSlash className='mx-3 ' />
+                                            showPassword ? <FaEyeSlash className='mx-3 ' />
                                                 :
                                                 <FaEye className='mx-3' />
                                         }
                                     </span>
                                 </div>
-                            </div>
-                            <input className=' w-full text-xl py-3 mt-5 rounded bg-my_primary text-white' type="submit" value="Sign in" />
-                        </form>
-                        <p className='divide-y border-b relative mt-10'>
-                            <span className='absolute -top-3 left-1/2 bg-white px-2'>Or</span>
-                        </p>
 
-                        <div className=' my-5'>
-                            <button className='bg-black my-3 text-white w-full inline-flex items-center text-center justify-center py-3 rounded '>
-                                <FaGithub className='text-2xl mr-3' />
-                                Sign In with Gitub
+                            </div>
+
+
+                            {/* terms conditon  */}
+                            <p className=''>
+                                <input onChange={() => setTermsAgree(!isTermsArgree)} type="checkbox" className='accent-blue-500 mr-2 ' />
+                                Are agree with Our <Link className='text-amber-500 hover:underline'>terms and conditions</Link>?
+                            </p>
+                            {/* error messege  */}
+                            {
+                                error && <p className='text-red-500 text-center '>{error}</p>
+                            }
+
+                            {/* submit button  */}
+                            <input
+                                className=' w-full disabled:bg-opacity-70 text-xl py-1.5 mt-4 rounded bg-my_primary text-white'
+                                type="submit"
+                                value="Sign In"
+                                disabled={!isTermsArgree}
+                            />
+                        </form>
+
+                        <div className='flex items-center justify-center gap-5 mt-5'>
+
+                            {/* github button  */}
+                            <button onClick={googleLoginHandler} className=''>
+                                <FaGithub className='text-2xl mr-3 w-10 h-10 border rounded-full' title='Login with Github' />
                             </button>
-                            <button className="border  my-3 w-full inline-flex items-center text-center justify-center py-3 rounded ">
-                                <FcGoogle className='text-2xl mr-3' />
-                                Sign In with Gitub
+
+                            {/* google button  */}
+                            <button onClick={githubLoginHandler} className=''>
+                                <FcGoogle className='text-2xl mr-3 w-10 h-10  rounded-full' title='Login with Github' />
                             </button>
+
 
                         </div>
-                        <p className=' text-center'>You have not any account <Link to='/register' className='text-my_primary text-center '>Register</Link></p>
+                        <p className=' text-center mt-2'>You have not  account <Link to='/register' className='text-my_primary text-center '>Register</Link></p>
                     </div>
 
                 </div>
@@ -80,4 +145,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Register;
