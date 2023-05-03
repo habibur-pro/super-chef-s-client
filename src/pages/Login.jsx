@@ -5,9 +5,13 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FcGoogle, } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { AuthContext } from '../routes/AuthProvider';
+import Spinner from '../components/Spinner';
 
 const Register = () => {
-    const { user, loginWithGoogle, loginWithGithub, loginWthEmailPassword, setLoading } = useContext(AuthContext)
+    const { user, loginWithGoogle, loginWithGithub, loginWthEmailPassword } = useContext(AuthContext)
+
+    const [isLoading, setLoading] = useState(false)
+
     const [showPassword, setShowPassword] = useState(false)
     const [isTermsArgree, setTermsAgree] = useState(false)
     const [error, setError] = useState('')
@@ -19,25 +23,31 @@ const Register = () => {
     // login handler 
     const handleLogin = (event) => {
         setError('')
+        setLoading(true)
         event.preventDefault()
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
 
         if (password.length < 6) {
+            setLoading(false)
+            form.reset()
             return setError('password will be 6 character or upper')
 
         }
 
         // email password login hanler 
         loginWthEmailPassword(email, password)
+
             .then(result => {
                 setLoading(false)
                 navigate(from, { replace: true })
             })
             .catch(error => {
-                setError(error.code)
+
                 setLoading(false)
+                form.reset()
+                setError(error.code)
             })
 
     }
@@ -129,7 +139,7 @@ const Register = () => {
                             <input
                                 className=' w-full disabled:bg-opacity-70 text-xl py-1.5 mt-4 rounded bg-my_primary text-white'
                                 type="submit"
-                                value='Sign In'
+                                value="Sign In"
                                 disabled={!isTermsArgree}
                             />
                         </form>
@@ -153,6 +163,11 @@ const Register = () => {
 
                 </div>
             </div>
+
+            {
+                isLoading && <Spinner />
+            }
+
         </div>
     );
 };

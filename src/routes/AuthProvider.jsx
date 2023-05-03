@@ -16,14 +16,14 @@ const AuthProvider = ({ children }) => {
 
     // register with email password
     const registerWithEmailPassword = (email, password) => {
-        setLoading(true)
+        // setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password)
 
     }
 
     // login with email password 
     const loginWthEmailPassword = (email, password) => {
-        setLoading(true)
+        // setLoading(true)
         return signInWithEmailAndPassword(auth, email, password)
 
     }
@@ -50,13 +50,13 @@ const AuthProvider = ({ children }) => {
     }
 
     // set name and profile photo 
-    const setNameAndPhoto = (userName, imageUrl) => {
-        setLoading(true)
-        return updateProfile(auth.currentUser, {
-            displayName: userName,
-            photoURL: imageUrl
-        })
-    }
+    // const setNameAndPhoto = (userName, imageUrl) => {
+        
+    //     return updateProfile(auth.currentUser, {
+    //         displayName: userName,
+    //         photoURL: imageUrl
+    //     })
+    // }
 
 
     // Auth Ovserver 
@@ -81,12 +81,8 @@ const AuthProvider = ({ children }) => {
         loginWithGoogle,
         loginWithGithub,
         logOut,
-        setNameAndPhoto,
         setLoading,
         isLoading
-
-
-
     }
     if (isLoading) {
         return <Spinner />

@@ -7,6 +7,7 @@ import { FaGithub } from "react-icons/fa";
 import { AuthContext } from '../routes/AuthProvider';
 import { getAuth, updateProfile } from 'firebase/auth';
 import app from '../utils/firebase.config';
+import Spinner from '../components/Spinner';
 
 const Register = () => {
     const auth = getAuth(app)
@@ -20,10 +21,13 @@ const Register = () => {
     const from = location.state?.from || '/'
 
 
-    const { user, setUser, loginWithGoogle, loginWithGithub, registerWithEmailPassword, setNameAndPhoto, isLoading, setLoading } = useContext(AuthContext)
+    const { user, setUser, loginWithGoogle, loginWithGithub, registerWithEmailPassword, setNameAndPhoto } = useContext(AuthContext)
+
+    const [isLoading, setLoading] = useState(false)
 
     const handleRegister = (event) => {
         setError('')
+        setLoading(true)
         event.preventDefault()
         const form = event.target;
         const name = form.name.value;
@@ -32,7 +36,10 @@ const Register = () => {
         const photoUrl = form.photo_url.value;
 
         if (password.length < 6) {
+            setLoading(false)
+            form.reset()
             return setError('password will be 6 character or upper')
+
 
         }
 
@@ -52,11 +59,16 @@ const Register = () => {
                         setLoading(false)
                         navigate(from)
                     })
-                    .catch(error => setError(error.code))
+                    .catch(error => {
+                        setLoading(false)
+                        form.reset()
+                        setError(error.code)
+                    })
 
             })
             .catch(error => {
                 setLoading(false)
+                form.reset()
                 setError(error.message)
             })
 
@@ -196,6 +208,9 @@ const Register = () => {
 
                 </div>
             </div>
+            {
+                isLoading && <Spinner />
+            }
         </div>
     );
 };

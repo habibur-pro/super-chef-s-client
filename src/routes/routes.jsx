@@ -14,7 +14,7 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <Main />,
-        loader: () => fetch('http://localhost:5000/chefs'),
+        loader: () => fetch('https://super-cheps-server-assignment-10-habibur-pro.vercel.app/chefs'),
         children: [
             {
                 path: '/',
@@ -36,7 +36,7 @@ const router = createBrowserRouter([
             {
                 path: '/chefs/:id',
                 element: <PrivetRoute><ChefDetails /></PrivetRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/chefs/${params.id}`)
+                loader: ({ params }) => fetch(`https://super-cheps-server-assignment-10-habibur-pro.vercel.app/chefs/${params.id}`)
 
             }
         ]
