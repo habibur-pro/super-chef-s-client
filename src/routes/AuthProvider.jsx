@@ -49,7 +49,7 @@ const AuthProvider = ({ children }) => {
 
     }
 
-    // set naem and profile photo 
+    // set name and profile photo 
     const setNameAndPhoto = (userName, imageUrl) => {
         setLoading(true)
         return updateProfile(auth.currentUser, {

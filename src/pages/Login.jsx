@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import loginImage from '../assets/login-image.jpg'
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FcGoogle, } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { AuthContext } from '../routes/AuthProvider';
@@ -11,6 +11,10 @@ const Register = () => {
     const [showPassword, setShowPassword] = useState(false)
     const [isTermsArgree, setTermsAgree] = useState(false)
     const [error, setError] = useState('')
+    const navigate = useNavigate()
+    const location = useLocation()
+    const from = location.state?.from?.pathname || '/'
+    console.log('from', from)
 
     // login handler 
     const handleLogin = (event) => {
@@ -28,7 +32,7 @@ const Register = () => {
         // email password login hanler 
         loginWthEmailPassword(email, password)
             .then(result => {
-
+                navigate(from, { replace: true })
             })
             .catch(error => {
                 setError(error.code)
@@ -42,7 +46,7 @@ const Register = () => {
         setError('')
         loginWithGoogle()
             .then(result => {
-                console.log('google login', result.user)
+                navigate(from, { replace: true })
             })
             .catch(error => setError(error))
 
@@ -52,7 +56,7 @@ const Register = () => {
         setError('')
         loginWithGithub()
             .then(result => {
-                console.log('github login', result.user)
+                navigate(from, { replace: true }) 
             })
             .catch(error => setError(error))
 
@@ -139,7 +143,7 @@ const Register = () => {
 
 
                         </div>
-                        <p className=' text-center mt-2'>You have not  account <Link to='/register' className='text-my_primary text-center '>Register</Link></p>
+                        <p className=' text-center mt-2'>You have not  account <Link state={{ from }} replace to='/register' className='text-my_primary text-center '>Register</Link></p>
                     </div>
 
                 </div>

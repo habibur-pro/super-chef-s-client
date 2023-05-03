@@ -15,7 +15,7 @@ const SingleChefCard = ({ chef }) => {
                     <span className='inline-flex items-center '> <TbChefHat className='text-xl text-gray-500' />{chef.numRecipes} </span>
                     <span className='inline-flex items-center'><SlLike className=' text-gray-500' />{chef.likes} </span>
                 </div>
-                <Link to={`/chefs/${chef.id}`}><button className='my-button '>View Recipe</button></Link>
+                <Link to={`chefs/${chef.id}`}><button className='my-button '>View Recipe</button></Link>
             </div >
         </div>
     );

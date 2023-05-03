@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import loginImage from '../assets/login-image.jpg'
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FcGoogle, } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { AuthContext } from '../routes/AuthProvider';
@@ -14,6 +14,11 @@ const Register = () => {
     const [showConfirmPassword, setShowConfirmPassword] = useState(false)
     const [isTermsArgree, setTermsAgree] = useState(false)
     const [error, setError] = useState('')
+
+    const navigate = useNavigate()
+    const location = useLocation()
+    const from = location.state?.from || '/'
+
 
     const { user, setUser, loginWithGoogle, loginWithGithub, registerWithEmailPassword, setNameAndPhoto, isLoading, setLoading } = useContext(AuthContext)
 
@@ -45,17 +50,12 @@ const Register = () => {
                     .then(() => {
                         setUser(result.user)
                         setLoading(false)
+                        navigate(from)
                     })
                     .catch(error => setError(error.code))
 
             })
             .catch(error => setError(error.message))
-
-
-
-        // updata name and profile photo 
-
-
 
 
     }
@@ -64,7 +64,7 @@ const Register = () => {
         setError('')
         loginWithGoogle()
             .then(result => {
-                console.log('github login', result.user)
+                navigate(from)
             })
             .catch(error => setError(error))
     }
@@ -74,7 +74,7 @@ const Register = () => {
         setError('')
         loginWithGithub()
             .then(result => {
-                console.log('github login', result.user)
+                navigate(from)
             })
             .catch(error => setError(error))
     }
@@ -149,27 +149,7 @@ const Register = () => {
                                 </div>
 
                             </div>
-                            {/* confire password field  */}
 
-                            {/* <div className='my-4'>
-                                <label className='block font-gray-700 text-md'>Confirm Password</label>
-                                <div className='w-full border flex py-1.5 items-center'>
-                                    <input
-                                        className='  border-0 w-full  border-gray-300 outline-none rounded pl-3 '
-                                        name='confirm_Password'
-                                        type={showConfirmPassword ? 'text' : 'password'}
-                                        required
-                                    />
-                                    <span className='text-xl text-gray-700' onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
-                                        {
-                                            showConfirmPassword ? <FaEyeSlash className='mx-3 ' />
-                                                :
-                                                <FaEye className='mx-3' />
-                                        }
-                                    </span>
-                                </div>
-
-                            </div> */}
                             {/* terms conditon  */}
                             <p className=''>
                                 <input onChange={() => setTermsAgree(!isTermsArgree)} type="checkbox" className='accent-blue-500 mr-2 ' />
@@ -184,7 +164,7 @@ const Register = () => {
                             {/* submit button  */}
                             <input
                                 className=' w-full disabled:bg-opacity-70 text-xl py-1.5 mt-4 rounded bg-my_primary text-white' type="submit"
-                                value={isLoading ? 'Loading' : "Register"}
+                                value="Register"
                                 disabled={!isTermsArgree}
                             />
                         </form>

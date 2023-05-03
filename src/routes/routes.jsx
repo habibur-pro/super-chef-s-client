@@ -5,6 +5,9 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Blog from "../pages/Blog";
 import ChefDetails from "../pages/ChefDetails";
+import PrivetRoute from "./PrivetRoute";
+
+
 
 
 const router = createBrowserRouter([
@@ -31,8 +34,9 @@ const router = createBrowserRouter([
                 element: <Blog></Blog>
             },
             {
-                path: 'chefs/:id',
-                element: <ChefDetails></ChefDetails>
+                path: '/chefs/:id',
+                element: <PrivetRoute><ChefDetails /></PrivetRoute>
+
             }
         ]
     }
