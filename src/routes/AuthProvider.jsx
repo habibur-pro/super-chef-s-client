@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react"
 import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import app from "../utils/firebase.config";
+import Spinner from "../components/Spinner";
 
 
 export const AuthContext = createContext(null)
@@ -10,6 +11,7 @@ const AuthProvider = ({ children }) => {
     const [isLoading, setLoading] = useState(true)
     const auth = getAuth(app)
     console.log('auth', auth) 
+
 
 
     // register with email password
@@ -28,7 +30,6 @@ const AuthProvider = ({ children }) => {
 
     // google login 
     const loginWithGoogle = () => {
-        setLoading(true)
         const provider = new GoogleAuthProvider();
         return signInWithPopup(auth, provider)
 
@@ -36,7 +37,7 @@ const AuthProvider = ({ children }) => {
 
     // Github login 
     const loginWithGithub = () => {
-        setLoading(true)
+
         const provider = new GithubAuthProvider()
         return signInWithPopup(auth, provider)
 
@@ -44,7 +45,6 @@ const AuthProvider = ({ children }) => {
 
     // logOUt 
     const logOut = () => {
-        setLoading(true)
         return signOut(auth)
 
     }
@@ -63,7 +63,6 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser)
-            console.log('user from state', currentUser)
             setLoading(false)
 
         })
@@ -89,7 +88,9 @@ const AuthProvider = ({ children }) => {
 
 
     }
-
+    if (isLoading) {
+        return <Spinner />
+    }
     return <AuthContext.Provider value={userInfo}>
         {children}
     </AuthContext.Provider>

@@ -55,7 +55,10 @@ const Register = () => {
                     .catch(error => setError(error.code))
 
             })
-            .catch(error => setError(error.message))
+            .catch(error => {
+                setLoading(false)
+                setError(error.message)
+            })
 
 
     }

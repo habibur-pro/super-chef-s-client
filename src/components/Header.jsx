@@ -7,10 +7,7 @@ import { AuthContext } from '../routes/AuthProvider';
 
 
 const Navbar = () => {
-
     const { user, logOut } = useContext(AuthContext)
-    console.log('user from header', user)
-    // console.log(user)
     const [isMenuOpen, setMenuOpen] = useState(false)
 
     const links = [

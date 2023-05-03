@@ -7,7 +7,7 @@ import { FaGithub } from "react-icons/fa";
 import { AuthContext } from '../routes/AuthProvider';
 
 const Register = () => {
-    const { user, loginWithGoogle, loginWithGithub, loginWthEmailPassword, isLoading, setLoading } = useContext(AuthContext)
+    const { user, loginWithGoogle, loginWithGithub, loginWthEmailPassword, setLoading } = useContext(AuthContext)
     const [showPassword, setShowPassword] = useState(false)
     const [isTermsArgree, setTermsAgree] = useState(false)
     const [error, setError] = useState('')
@@ -32,11 +32,12 @@ const Register = () => {
         // email password login hanler 
         loginWthEmailPassword(email, password)
             .then(result => {
+                setLoading(false)
                 navigate(from, { replace: true })
             })
             .catch(error => {
                 setError(error.code)
-
+                setLoading(false)
             })
 
     }
@@ -48,7 +49,9 @@ const Register = () => {
             .then(result => {
                 navigate(from, { replace: true })
             })
-            .catch(error => setError(error))
+            .catch(error => {
+                setError(error)
+            })
 
     }
     // github login handler 
@@ -58,7 +61,9 @@ const Register = () => {
             .then(result => {
                 navigate(from, { replace: true }) 
             })
-            .catch(error => setError(error))
+            .catch(error => {
+                setError(error)
+            })
 
     }
 
