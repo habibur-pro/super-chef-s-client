@@ -5,14 +5,17 @@ import { Link } from 'react-router-dom';
 import { FcGoogle, } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { AuthContext } from '../routes/AuthProvider';
+import { getAuth, updateProfile } from 'firebase/auth';
+import app from '../utils/firebase.config';
 
 const Register = () => {
+    const auth = getAuth(app)
     const [showPassword, setShowPassword] = useState(false)
     const [showConfirmPassword, setShowConfirmPassword] = useState(false)
     const [isTermsArgree, setTermsAgree] = useState(false)
     const [error, setError] = useState('')
 
-    const { user, loginWithGoogle, loginWithGithub, registerWithEmailPassword } = useContext(AuthContext)
+    const { user, setUser, loginWithGoogle, loginWithGithub, registerWithEmailPassword, setNameAndPhoto, isLoading, setLoading } = useContext(AuthContext)
 
     const handleRegister = (event) => {
         setError('')
@@ -21,21 +24,37 @@ const Register = () => {
         const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
+        const photoUrl = form.photo_url.value;
 
         if (password.length < 6) {
             return setError('password will be 6 character or upper')
 
         }
-        const photoUrl = form.photo_url.value;
-        console.log('register', name, email, password, photoUrl)
 
         // register with email and password 
         registerWithEmailPassword(email, password)
 
             .then(result => {
-                console.log('login user', result.user)
+                setLoading(true)
+
+                //    updating profile name and image 
+                updateProfile(auth.currentUser, {
+                    displayName: name,
+                    photoURL: photoUrl
+                })
+                    .then(() => {
+                        setUser(result.user)
+                        setLoading(false)
+                    })
+                    .catch(error => setError(error.code))
+
             })
             .catch(error => setError(error.message))
+
+
+
+        // updata name and profile photo 
+
 
 
 
@@ -165,7 +184,7 @@ const Register = () => {
                             {/* submit button  */}
                             <input
                                 className=' w-full disabled:bg-opacity-70 text-xl py-1.5 mt-4 rounded bg-my_primary text-white' type="submit"
-                                value="Register"
+                                value={isLoading ? 'Loading' : "Register"}
                                 disabled={!isTermsArgree}
                             />
                         </form>

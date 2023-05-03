@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react"
-import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import app from "../utils/firebase.config";
 
 
@@ -49,13 +49,23 @@ const AuthProvider = ({ children }) => {
 
     }
 
+    // set naem and profile photo 
+    const setNameAndPhoto = (userName, imageUrl) => {
+        setLoading(true)
+        return updateProfile(auth.currentUser, {
+            displayName: userName,
+            photoURL: imageUrl
+        })
+    }
+
 
     // Auth Ovserver 
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser)
+            console.log('user from state', currentUser)
             setLoading(false)
-            console.log('console from auth state', user)
+
         })
         return () => {
             unSubscribe()
@@ -66,11 +76,16 @@ const AuthProvider = ({ children }) => {
 
     const userInfo = {
         user,
+        setUser,
         registerWithEmailPassword,
         loginWthEmailPassword,
         loginWithGoogle,
         loginWithGithub,
-        logOut
+        logOut,
+        setNameAndPhoto,
+        setLoading,
+        isLoading
+
 
 
     }

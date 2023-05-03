@@ -7,7 +7,7 @@ import { FaGithub } from "react-icons/fa";
 import { AuthContext } from '../routes/AuthProvider';
 
 const Register = () => {
-    const { user, loginWithGoogle, loginWithGithub, loginWthEmailPassword } = useContext(AuthContext)
+    const { user, loginWithGoogle, loginWithGithub, loginWthEmailPassword, isLoading, setLoading } = useContext(AuthContext)
     const [showPassword, setShowPassword] = useState(false)
     const [isTermsArgree, setTermsAgree] = useState(false)
     const [error, setError] = useState('')
@@ -28,9 +28,12 @@ const Register = () => {
         // email password login hanler 
         loginWthEmailPassword(email, password)
             .then(result => {
-                console.log('login user', result.user)
+
             })
-            .catch(error => setError(error.code))
+            .catch(error => {
+                setError(error.code)
+
+            })
 
     }
 
@@ -56,7 +59,7 @@ const Register = () => {
     }
 
     return (
-        <div id='loginPage' className='w-screen, h-[calc(100vh-72px)] pt-10 flex justify-center items-center'>
+        <div id='loginPage' className='w-screen h-[calc(100vh-72px)] pt-10 flex justify-center items-center'>
             <div className='  '>
                 <div className=' w-full grid grid-cols-1  md:grid-cols-5  border md:shadow-2xl rounded'>
                     <div className='md:col-span-3'>
@@ -110,14 +113,14 @@ const Register = () => {
                             </p>
                             {/* error messege  */}
                             {
-                                error && <p className='text-red-500 text-center '>{error}</p>
+                                error && <p className='text-red-500 text-center duration-500'>{error}</p>
                             }
 
                             {/* submit button  */}
                             <input
                                 className=' w-full disabled:bg-opacity-70 text-xl py-1.5 mt-4 rounded bg-my_primary text-white'
                                 type="submit"
-                                value="Sign In"
+                                value='Sign In'
                                 disabled={!isTermsArgree}
                             />
                         </form>
