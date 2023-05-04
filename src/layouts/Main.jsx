@@ -2,6 +2,7 @@ import React, { createContext } from 'react';
 import { Outlet, useLoaderData } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { Toaster } from 'react-hot-toast';
 
 export const ChefDataContext = createContext('')
 
@@ -17,6 +18,7 @@ const Main = () => {
                 <Outlet />
             </div>
             <Footer />
+                <Toaster />
             </ChefDataContext.Provider>
         </div>
     )

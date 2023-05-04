@@ -6,6 +6,7 @@ import Register from "../pages/Register";
 import Blog from "../pages/Blog";
 import ChefDetails from "../pages/ChefDetails";
 import PrivetRoute from "./PrivetRoute";
+import NotFound from "../pages/NotFound";
 
 
 
@@ -15,6 +16,7 @@ const router = createBrowserRouter([
         path: '/',
         element: <Main />,
         loader: () => fetch('https://super-cheps-server-assignment-10-habibur-pro.vercel.app/chefs'),
+        errorElement: <NotFound />,
         children: [
             {
                 path: '/',
