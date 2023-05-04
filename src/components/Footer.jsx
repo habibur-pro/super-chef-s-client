@@ -11,7 +11,7 @@ const Footer = () => {
                         <h1 className='uppercase text-4xl font-bold tracking-widest '>Super chefs</h1>
                     </div>
                 </div>
-                <ul className='flex justify-center  gap-4 font-bold mb-5'>
+                <ul className='flex justify-center  gap-4 font-bold mb-5 flex-wrap'>
                     <li className='hover:underline duration-500 font-sembold'><Link>Home</Link></li>
                     <li className='hover:underline duration-500 font-sembold'><Link>Feature </Link></li>
                     <li className='hover:underline duration-500 font-sembold'><Link>Reviews</Link></li>
