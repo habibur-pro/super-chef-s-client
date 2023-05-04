@@ -1,6 +1,7 @@
 import React from 'react';
 import banner from '../assets/banner2.png'
 import foodBg from '../assets/foodBg.jpeg'
+import LazyLoad from 'react-lazy-load';
 const Banner = () => {
     return (
       <div className=' bg-[#efefef] min-h-[calc(100vh-72px)]  ' >
@@ -10,7 +11,9 @@ const Banner = () => {
                 <p className='leading-7 text-gray-700'>Cooking should be fun, easy, and rewarding, and that's exactly what you'll find at <span className='text-my_primary'>Super Cheps'S.</span>. Our recipes are designed to help you create amazing meals that are full of flavor and nutrition, without all the hassle.</p>
             </div>
             <div className='  w-full'>
+
             <img src={banner} alt="" className=' w-full md:min-w-[450px] ' />
+
             </div>
           </div>
 

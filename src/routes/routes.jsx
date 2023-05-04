@@ -11,19 +11,21 @@ import NotFound from "../pages/NotFound";
 
 
 
+
 const router = createBrowserRouter([
     {
         path: '/',
         element: <Main />,
-        loader: () => fetch('http://localhost:5000/chefs'),
+        loader: () => fetch('https://super-cheps-server-assignment-10-habibur-pro.vercel.app/chefs'),
         errorElement: <NotFound />,
         children: [
             {
                 path: '/',
                 element: <Home />,
-                loader: () => fetch('http://localhost:5000/reviews')
+                loader: () => fetch('https://super-cheps-server-assignment-10-habibur-pro.vercel.app/reviews')
 
             },
+
             {
                 path: '/login',
                 element: <Login />
@@ -39,7 +41,7 @@ const router = createBrowserRouter([
             {
                 path: '/chefs/:chefId',
                 element: <PrivetRoute><ChefDetails /></PrivetRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/chefs/${params.chefId}`)
+                loader: ({ params }) => fetch(`https://super-cheps-server-assignment-10-habibur-pro.vercel.app/chefs/${params.chefId}`)
 
             }
         ]
