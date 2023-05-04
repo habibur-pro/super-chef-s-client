@@ -14,9 +14,7 @@ const OurChefs = () => {
                 chefsData.map(chef => <SingleChefCard
                     key={chef.id}
                     chef={chef}
-                >
-
-                </SingleChefCard>)
+                ></SingleChefCard>)
             }
             </div>
         </div>

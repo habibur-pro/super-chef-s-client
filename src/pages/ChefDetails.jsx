@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
+import RecipeCard from '../components/RecipeCard';
 
 const ChefDetails = () => {
 
@@ -7,8 +8,28 @@ const ChefDetails = () => {
     console.log(chef)
 
     return (
-        <div className='my-container bg-white'>
-            <h3 className='text-5xl mt-20 text-red-500'>chefDetails</h3>
+        <div className=' '>
+            <div className='my-container '>
+                <div>
+                    <h1 className='text-5xl font-bold'>{chef.name}</h1>
+                    <p>{chef.biodata}</p>
+                    <p>{chef.likes}</p>
+                    <p>{chef.numRecipes}</p>
+                    <p>{chef.experience}</p>
+                </div>
+                <div>
+                    <img src={chef.picture} alt="" />
+                </div>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
+                    {
+                        chef.recipes.map((recipe, i) => <RecipeCard
+                            key={i}
+                            recipe={recipe}
+                        ></RecipeCard>)
+                    }
+                </div>
+            </div>
+
         </div>
     );
 };
