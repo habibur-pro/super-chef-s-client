@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import foodImage from '../assets/testFood.jpg'
 import { toast } from 'react-hot-toast';
 import { FaStar, FaHeart } from "react-icons/fa";
 
@@ -15,13 +14,13 @@ const RecipeCard = ({ recipe }) => {
     }
     return (
         <div className=" rounded overflow-hidden shadow-lg relative pb-3">
-            <img className="w-full" src={foodImage} alt="Sunset in the mountains" />
+            <img className="w-full" src={recipeImage} alt="Sunset in the mountains" />
             <div className="px-6 py-4 ">
                 <div className="font-bold text-xl mb-2">{recipeName}</div>
 
                 <ul className='list-disc'>
                     {
-                        ingredients.map(item => <li className='ml-5'>{item}</li>)
+                        ingredients.map((item, i) => <li key={i} className='ml-5'>{item}</li>)
                     }
                 </ul>
                 <p className="text-gray-700 text-base">{cookingMethod}</p>

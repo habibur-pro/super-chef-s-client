@@ -4,9 +4,8 @@ import RecipeCard from '../components/RecipeCard';
 import { FaHeart } from 'react-icons/fa';
 
 const ChefDetails = () => {
-
     const chef = useLoaderData()
-    console.log(chef)
+
 
     return (
         <div className=' '>
@@ -17,7 +16,7 @@ const ChefDetails = () => {
                             <div className="mt-12 lg:mt-0">
                                 <h1 className="text-3xl md:text-6xl xl:text-7xl font-bold tracking-tight mb-8" >{chef.name}</h1>
 
-                                <p className="   font-medium mb-5 text-sm leading-6 uppercase rounded ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto asperiores numquam cumque molestias rerum hic eveniet quas consequatur porro, sapiente quasi fuga maiores expedita eius, excepturi repudiandae possimus saepe sunt?</p>
+                                <p className="   font-medium mb-5 text-sm leading-6 uppercase rounded ">{chef.biodata}</p>
                                 <p className='inline-flex items-center gap-3 font-lg text-my_primary'><span><FaHeart /></span>{chef.likes}</p>
                                 <p> Experience: {chef.experience}</p>
                                 <p>Recipies {chef.numRecipes}</p>

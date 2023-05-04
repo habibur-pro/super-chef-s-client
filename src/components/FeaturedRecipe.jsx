@@ -20,6 +20,7 @@ const FeaturedRecipe = () => {
                 {
                     featuredRecipeData.map(recipe => <FeturedCard
                         recipe={recipe}
+                        key={recipe.recipeId}
                     ></FeturedCard>)
                 }
             </div>

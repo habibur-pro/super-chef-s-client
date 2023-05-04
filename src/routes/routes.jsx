@@ -15,13 +15,13 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <Main />,
-        loader: () => fetch('https://super-cheps-server-assignment-10-habibur-pro.vercel.app/chefs'),
-        errorElement: <NotFound />,
+        loader: () => fetch('http://localhost:5000/chefs'),
+        // errorElement: <NotFound />,
         children: [
             {
                 path: '/',
                 element: <Home />,
-                loader: () => fetch('https://super-cheps-server-assignment-10-habibur-pro.vercel.app/reviews')
+                loader: () => fetch('http://localhost:5000/reviews')
 
             },
             {
@@ -37,9 +37,9 @@ const router = createBrowserRouter([
                 element: <Blog></Blog>
             },
             {
-                path: '/chefs/:id',
+                path: '/chefs/:chefId',
                 element: <PrivetRoute><ChefDetails /></PrivetRoute>,
-                loader: ({ params }) => fetch(`https://super-cheps-server-assignment-10-habibur-pro.vercel.app/chefs/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/chefs/${params.chefId}`)
 
             }
         ]
