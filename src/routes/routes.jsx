@@ -16,7 +16,7 @@ const router = createBrowserRouter([
         path: '/',
         element: <Main />,
         loader: () => fetch('http://localhost:5000/chefs'),
-        // errorElement: <NotFound />,
+        errorElement: <NotFound />,
         children: [
             {
                 path: '/',
