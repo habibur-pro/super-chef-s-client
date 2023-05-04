@@ -12,6 +12,7 @@ import NotFound from "../pages/NotFound";
 
 
 
+
 const router = createBrowserRouter([
     {
         path: '/',
@@ -25,6 +26,7 @@ const router = createBrowserRouter([
                 loader: () => fetch('https://super-cheps-server-assignment-10-habibur-pro.vercel.app/reviews')
 
             },
+
 
             {
                 path: '/login',

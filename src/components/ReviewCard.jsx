@@ -14,8 +14,7 @@ const ReviewCard = ({ review }) => {
                 </div>
             </div>
             <p className="line-clamp-2 sm:line-clamp-none mt-4 text-gray-500">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
-                voluptatem alias ut provident sapiente repellendus.
+                {review.review_text.slice(0, 99)}
             </p>
         </blockquote>
     );

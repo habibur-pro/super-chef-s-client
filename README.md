@@ -1,23 +1,23 @@
 
-# Coock's corner
+# Super Chef's
 
-This is a job searching website. I have done this project using React. to build it I have used tailwind css as a css library and also use daisyui as a component library.
 
-[LiveSite](https://extraordinary-meerkat-b94fcd.netlify.app/)
+
+[LiveSite](https://simple-firebase-recap-3188a.web.app/)
 
 ## Features
 
 - Mobile Responsive
-- First time show 4 jobs after click see all jobs button all jobs will be show
-- applied jobs will be stor in localstorage 
-- after clicking job details button it will be show jobs details on a dynamic route
-- Select option to Filter applied jobs by remote and onsite
-- Created an area chart by using previous assignment marks
+- using node js server data come from api
+- implemented firebase authentication system
+- you will login by email, google and github 
+- added protected route if you not login you can not go to chefs details page
+- when user loged in show his profile picture on the navbar and if you hover that you will see your name (if name is available)
 
 
 ## Deployment
 
-This project deployed on netlify
+This project deployed cline site firebase and server vercel
 
 ```bash
   npm run build
