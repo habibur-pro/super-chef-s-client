@@ -5,7 +5,7 @@ const Banner = () => {
     return (
       <div className=' bg-[#efefef] min-h-[calc(100vh-72px)]  ' >
           <div className='my-container lg:flex justify-between items-center gap-10'>
-          <div className=' w-3/4'>
+          <div className=' w-'>
                 <h1 className='text-4xl font-bold text-gray-600 mb-4 leading-[50px]'> Cook amazing with <span className='text-my_primary block font-super'>Super Chep'S</span></h1>
                 <p className='leading-7 text-gray-700'>Cooking should be fun, easy, and rewarding, and that's exactly what you'll find at <span className='text-my_primary'>Super Cheps'S.</span>. Our recipes are designed to help you create amazing meals that are full of flavor and nutrition, without all the hassle.</p>
             </div>

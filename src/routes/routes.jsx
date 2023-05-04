@@ -21,6 +21,7 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home />,
+                loader: () => fetch('https://super-cheps-server-assignment-10-habibur-pro.vercel.app/reviews')
 
             },
             {
