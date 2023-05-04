@@ -13,6 +13,7 @@ const NotFound = () => {
                 <div className='text-center'>
                     <Lottie animationData={notFoundAnimation} loop={true} />
 
+                    <h3 className='text-2xl text-center text-black mb-3'>{error?.error?.message}</h3>
                     <Link to='/'>
                         <button className='py-3 px-5 bg-my_primary text-white rounded text-md hover:bg-primary_hover text-lg '>Back to Home</button>
                     </Link>
