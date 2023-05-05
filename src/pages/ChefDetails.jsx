@@ -2,7 +2,7 @@ import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 import RecipeCard from '../components/RecipeCard';
 import { FaHeart } from 'react-icons/fa';
-
+import bannerFood from '../assets/bannerFood.jpg'
 
 const ChefDetails = () => {
     const chef = useLoaderData()
@@ -11,7 +11,12 @@ const ChefDetails = () => {
 
     return (
         <div className=' '>
-            <div className=' bg-slate-700 text-white'>
+            <div className='  text-white' style={{
+                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url(${bannerFood})`,
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover',
+            }}>
                 <div className="px-6 pt-12 md:px-12 text-center lg:text-left">
                     <div className="container mx-auto xl:px-32">
                         <div className="grid lg:grid-cols-2 gap-12 flex items-center">
@@ -19,9 +24,23 @@ const ChefDetails = () => {
                                 <h1 className="text-3xl md:text-6xl xl:text-7xl font-bold tracking-tight mb-8" >{chef.name}</h1>
 
                                 <p className="   font-medium mb-5 text-sm leading-6 uppercase rounded ">{chef.biodata}</p>
-                                <p className='inline-flex items-center gap-3 font-lg text-my_primary'><span><FaHeart /></span>{chef.likes}</p>
-                                <p> Experience: {chef.experience}</p>
-                                <p>Recipies {chef.numRecipes}</p>
+
+                                <div className=' md:flex items-center justify-center gap-10 '>
+                                    <div className='glass mb-3 md:mb-0 py-3 px-5 leading-6 rounded text-lg'>
+                                        <p className='text-center'>Total Like</p>
+                                        <p className='text-center'>{chef.likes}</p>
+                                    </div>
+
+                                    <div className='glass mb-3 md:mb-0 py-3 px-5 leading-6 rounded text-lg'>
+                                        <p className='text-center'>Experience</p>
+                                        <p className='text-center'>{chef.experience} Years</p>
+                                    </div>
+
+                                    <div className='glass mb-3 md:mb-0 py-3 px-5 leading-6 rounded text-lg'>
+                                        <p className='text-center'>Recipes of</p>
+                                        <p className='text-center'>{chef.numRecipes}</p>
+                                    </div>
+                                </div>
                             </div>
                             <div className="mb-12 lg:mb-0">
                                 <img

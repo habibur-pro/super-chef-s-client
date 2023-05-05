@@ -14,7 +14,7 @@ const RecipeCard = ({ recipe }) => {
 
     }
     return (
-        <div className=" rounded overflow-hidden shadow-lg relative pb-3">
+        <div className=" rounded overflow-hidden glass  text-gray-200 shadow-lg relative pb-3">
             <img className="w-full" src={recipeImage} alt="Sunset in the mountains" />
             <div className="px-6 py-4 ">
                 <div className="font-bold text-xl mb-2">{recipeName}</div>
@@ -24,10 +24,10 @@ const RecipeCard = ({ recipe }) => {
                         ingredients?.slice(0, 5)?.map((item, i) => <li key={i} className='ml-5'>{item}</li>)
                     }
                 </ul>
-                <p className="text-gray-700 text-base">
+                <p className="text-gray-200  text-base">
                     {seeAll ? cookingMethod : cookingMethod.slice(0, 100) + '...'}
                     <button onClick={() => setSeeAll(!seeAll)}
-                        className='text-my_primary underline'
+                        className='text-amber-400 underline'
                     >
                         {seeAll ? 'Read Less' : 'Read More'}
                     </button>
@@ -37,8 +37,11 @@ const RecipeCard = ({ recipe }) => {
             </div>
             <div className="px-6 pt-4 pb-2">
                 <div className='flex gap-10 absolute bottom-2'>
-                    <p className='inline-flex items-center'><span className='mr-2 text-my_primary'><FaStar /></span> {ratings}</p>
-                    <button onClick={handleBtnDisabled} className='my-button disabled:bg-opacity-50' disabled={disabled}><FaHeart /></button>
+                    <p className='inline-flex items-center text-amber-400'>
+                        <span className='mr-2 '>
+                            <FaStar />
+                        </span> {ratings}</p>
+                    <button onClick={handleBtnDisabled} className='disabled:text-red-400' disabled={disabled}><FaHeart /></button>
                 </div>
             </div>
         </div>

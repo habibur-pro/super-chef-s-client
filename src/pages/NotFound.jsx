@@ -5,8 +5,7 @@ import notFoundAnimation from '../assets/animation/404.json'
 
 const NotFound = () => {
     const error = useRouteError()
-    console.log(error)
-    console.log(error)
+
     return (
         <div className='w-screen h-[calc(100vh-72px)] flex justify-center items-center '>
             <div className='my-container '>

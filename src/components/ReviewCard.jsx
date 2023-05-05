@@ -2,7 +2,7 @@ import React from 'react';
 
 const ReviewCard = ({ review }) => {
     return (
-        <blockquote className="rounded-lg bg-gray-100 p-8">
+        <blockquote className="rounded-lg glass  p-8">
             <div className="lg:flex items-center gap-4">
                 <img
                     alt="Man"
@@ -10,10 +10,10 @@ const ReviewCard = ({ review }) => {
                     className="h-16 w-16 rounded-full object-cover mx-auto lg:mx-0 text-center lg:text-start"
                 />
                 <div>
-                    <p className="mt-1 text-lg font-medium text-center lg:text-start text-gray-700">{review.name}</p>
+                    <p className="mt-1  text-lg font-medium text-center lg:text-start text-gray-200">{review.name}</p>
                 </div>
             </div>
-            <p className="line-clamp-2 sm:line-clamp-none mt-4 text-gray-500">
+            <p className="line-clamp-2 sm:line-clamp-none mt-4 text-gray-200">
                 {review.review_text.slice(0, 99)}
             </p>
         </blockquote>

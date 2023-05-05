@@ -6,10 +6,12 @@ const Blog = () => {
     return (
         <div>
             <div ref={ref} className='my-container bg-white'>
+                <h1 className='text-center text-5xl my-3'>Here is the ans of 4 Questions</h1>
                 <Pdf targetRef={ref} filename="Blog.pdf">
                     {({ toPdf }) => <button className='my-button mb-3' onClick={toPdf}>Download Pdf</button>}
                 </Pdf>
                 <div className=' '>
+
                     <h3 className='text-2xl font-bold text-gray-600'>Tell us the differences between uncontrolled and controlled components</h3>
                     <p className='font-md mt-2 '>
                         Controlled and uncontrolled components are ways to manage data. in controled component parent component responsible for manage child state and data passing.on the otherhand uncontroled components manage his own state internally

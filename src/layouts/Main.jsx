@@ -8,10 +8,10 @@ export const ChefDataContext = createContext('')
 
 const Main = () => {
     const chefsData = useLoaderData()
-    console.log(chefsData)
+
     return (
         <div>
-            <ChefDataContext.Provider value={chefsData}>
+            <ChefDataContext.Provider className='bg-gray-700' value={chefsData}>
             <Header></Header>
             <div className='min-h-[calc(100vh-72px)] mt-[72px]'>
 

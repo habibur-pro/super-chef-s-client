@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import loginImage from '../assets/login-image.jpg'
+import bannerFood from '../assets/bannerFood.jpg'
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FcGoogle, } from "react-icons/fc";
@@ -18,7 +18,7 @@ const Register = () => {
     const navigate = useNavigate()
     const location = useLocation()
     const from = location.state?.from?.pathname || '/'
-    console.log('from', from)
+
 
     // login handler 
     const handleLogin = (event) => {
@@ -78,24 +78,24 @@ const Register = () => {
     }
 
     return (
-        <div id='loginPage' className='w-screen h-[calc(100vh-72px)] pt-10 flex justify-center items-center'>
-            <div className='  '>
-                <div className=' w-full grid grid-cols-1  md:grid-cols-5  border md:shadow-2xl rounded'>
+        <div id='loginPage' className=' min-h-[calc(100vh-72px)] pt-10 flex justify-center items-center'>
+            <div className=' my-container  '>
+                <div className='border border-gray-200 w-full grid grid-cols-1  md:grid-cols-5   md:shadow-2xl rounded'>
                     <div className='md:col-span-3'>
-                        <img className='h-full w-full' src={loginImage} alt="" />
+                        <img className='h-full w-full' src={bannerFood} alt="" />
                     </div>
                     {/* fomr containr  */}
 
-                    <div className='md:col-span-2 flex justify-center flex-col px-10 py-10 bg-white '>
-                        <h3 className='font-bold text-2xl text-center text-gray-700'>Sign In</h3>
+                    <div className='md:col-span-2 flex justify-center glass flex-col px-10 py-10  '>
+                        <h3 className='font-bold text-2xl text-center text-gray-200'>Sign In</h3>
 
                         <form onSubmit={handleLogin} className=''>
                             {/* email field */}
-                            <div className='my-4'>
-                                <label className='block font-gray-700 text-md'>Email</label>
-                                <div className='w-full border flex  items-center py-1.5'>
+                            <div className='my-4 '>
+                                <label className='block text-gray-200 text-md '>Email</label>
+                                <div className='w-full border border-gray-200 flex  items-center py-1.5'>
                                     <input
-                                        className='  border-0 w-full  border-gray-300 outline-none rounded pl-3 '
+                                        className='  border-0 w-full bg-transparent text-gray-200  tracking-wider outline-none rounded pl-3 '
                                         name='email'
                                         type='email'
                                         required
@@ -105,15 +105,15 @@ const Register = () => {
                             </div>
                             {/* password field  */}
                             <div className='my-4'>
-                                <label className='block font-gray-700 text-md'>Password</label>
-                                <div className='w-full border flex py-1.5 items-center'>
+                                <label className='block text-gray-200 text-md'>Password</label>
+                                <div className='w-full border border-gray-200 flex  items-center py-1.5'>
                                     <input
-                                        className='  border-0 w-full  border-gray-300 outline-none rounded pl-3 '
+                                        className=' border-0 w-full bg-transparent text-gray-200  tracking-wider outline-none rounded pl-3'
                                         name='password'
                                         type={showPassword ? 'text' : 'password'}
                                         required
                                     />
-                                    <span className='text-xl text-gray-700' onClick={() => setShowPassword(!showPassword)}>
+                                    <span className='text-xl text-gray-200' onClick={() => setShowPassword(!showPassword)}>
                                         {
                                             showPassword ? <FaEyeSlash className='mx-3 ' />
                                                 :
@@ -126,9 +126,9 @@ const Register = () => {
 
 
                             {/* terms conditon  */}
-                            <p className=''>
-                                <input onChange={() => setTermsAgree(!isTermsArgree)} type="checkbox" className='accent-blue-500 mr-2 ' />
-                                Are agree with Our <Link className='text-amber-500 hover:underline'>terms and conditions</Link>?
+                            <p className='text-gray-200 '>
+                                <input onChange={() => setTermsAgree(!isTermsArgree)} type="checkbox" className='accent-amber-500 mr-2 ' />
+                                Are agree with Our <Link className='text-amber-400 hover:underline'>terms and conditions?</Link>
                             </p>
                             {/* error messege  */}
                             {
@@ -137,28 +137,33 @@ const Register = () => {
 
                             {/* submit button  */}
                             <input
-                                className=' w-full disabled:bg-opacity-70 text-xl py-1.5 mt-4 rounded bg-my_primary text-white'
-                                type="submit"
+                                className='disabled:bg-amber-400 btn btn-warning w-full mt-7 mb-5 rounded-sm '
+                                type='submit'
                                 value="Sign In"
                                 disabled={!isTermsArgree}
                             />
+
                         </form>
+
+                        {/* redirecet register  */}
+                        <p className=' text-center text-gray-200 mt-2'>You have not  account <Link state={{ from }} replace to='/register' className='text-amber-400 text-center '>Register</Link>
+                        </p>
 
                         <div className='flex items-center justify-center gap-5 mt-5'>
 
                             {/* github button  */}
                             <button onClick={googleLoginHandler} className=''>
-                                <FaGithub className='text-2xl mr-3 w-10 h-10 border rounded-full' title='Login with Github' />
+                                <FaGithub className='text-2xl  mr-3 w-10 h-10 text-white rounded-full' title='Login with Github' />
                             </button>
 
                             {/* google button  */}
                             <button onClick={githubLoginHandler} className=''>
-                                <FcGoogle className='text-2xl mr-3 w-10 h-10  rounded-full' title='Login with Github' />
+                                <FcGoogle className='text-2xl mr-3 w-10 h-10   rounded-full' title='Login with Github' />
                             </button>
 
 
                         </div>
-                        <p className=' text-center mt-2'>You have not  account <Link state={{ from }} replace to='/register' className='text-my_primary text-center '>Register</Link></p>
+
                     </div>
 
                 </div>
