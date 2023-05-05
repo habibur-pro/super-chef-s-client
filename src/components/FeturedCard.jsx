@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import LazyLoad from 'react-lazy-load';
 
 const FeturedCard = ({ recipe }) => {
     // console.log(recipe)
@@ -13,6 +13,7 @@ const FeturedCard = ({ recipe }) => {
                 className="max-h-28  rounded-3xl mr-3"
                 src={recipe.recipeImage}
                 alt="" />
+
 
             <div className="px-2">
                 <h5

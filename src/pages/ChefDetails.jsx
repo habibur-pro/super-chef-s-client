@@ -3,14 +3,16 @@ import { useLoaderData } from 'react-router-dom';
 import RecipeCard from '../components/RecipeCard';
 import { FaHeart } from 'react-icons/fa';
 
+
 const ChefDetails = () => {
     const chef = useLoaderData()
+
 
 
     return (
         <div className=' '>
             <div className=' bg-slate-700 text-white'>
-                <div className="px-6 py-12 md:px-12 text-center lg:text-left">
+                <div className="px-6 pt-12 md:px-12 text-center lg:text-left">
                     <div className="container mx-auto xl:px-32">
                         <div className="grid lg:grid-cols-2 gap-12 flex items-center">
                             <div className="mt-12 lg:mt-0">
@@ -24,7 +26,7 @@ const ChefDetails = () => {
                             <div className="mb-12 lg:mb-0">
                                 <img
                                     src={chef.picture}
-                                    className=" max-h-96 w-full rounded-lg shadow-lg bg-[#efefef]"
+                                    className="max-h-[500px] w-full rounded-lg shadow-lg "
                                     alt=""
                                 />
                             </div>

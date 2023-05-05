@@ -4,6 +4,7 @@ import { FaStar, FaHeart } from "react-icons/fa";
 
 const RecipeCard = ({ recipe }) => {
     const [disabled, setDisabled] = useState(false)
+    const [seeAll, setSeeAll] = useState(false)
     const { cookingMethod, ingredients, ratings, recipeName, recipeImage } = recipe
 
     const handleBtnDisabled = () => {
@@ -20,10 +21,17 @@ const RecipeCard = ({ recipe }) => {
 
                 <ul className='list-disc'>
                     {
-                        ingredients.map((item, i) => <li key={i} className='ml-5'>{item}</li>)
+                        ingredients?.slice(0, 5)?.map((item, i) => <li key={i} className='ml-5'>{item}</li>)
                     }
                 </ul>
-                <p className="text-gray-700 text-base">{cookingMethod}</p>
+                <p className="text-gray-700 text-base">
+                    {seeAll ? cookingMethod : cookingMethod.slice(0, 100) + '...'}
+                    <button onClick={() => setSeeAll(!seeAll)}
+                        className='text-my_primary underline'
+                    >
+                        {seeAll ? 'Read Less' : 'Read More'}
+                    </button>
+                </p>
 
 
             </div>
