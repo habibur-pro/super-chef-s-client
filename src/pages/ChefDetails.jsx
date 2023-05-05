@@ -3,6 +3,7 @@ import { useLoaderData } from 'react-router-dom';
 import RecipeCard from '../components/RecipeCard';
 import { FaHeart } from 'react-icons/fa';
 import bannerFood from '../assets/bannerFood.jpg'
+import LazyLoad from 'react-lazy-load';
 
 const ChefDetails = () => {
     const chef = useLoaderData()
@@ -43,11 +44,13 @@ const ChefDetails = () => {
                                 </div>
                             </div>
                             <div className="mb-12 lg:mb-0">
+
                                 <img
                                     src={chef.picture}
                                     className="max-h-[500px] w-full rounded-lg shadow-lg "
                                     alt=""
                                 />
+
                             </div>
                         </div>
                     </div>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { FaStar, FaHeart } from "react-icons/fa";
+import LazyLoad from 'react-lazy-load';
 
 const RecipeCard = ({ recipe }) => {
     const [disabled, setDisabled] = useState(false)
@@ -14,8 +15,11 @@ const RecipeCard = ({ recipe }) => {
 
     }
     return (
+        <LazyLoad>
         <div className=" rounded overflow-hidden glass  text-gray-200 shadow-lg relative pb-3">
-            <img className="w-full" src={recipeImage} alt="Sunset in the mountains" />
+
+                <img className="w-full" src={recipeImage} alt="Sunset in the mountains" />
+
             <div className="px-6 py-4 ">
                 <div className="font-bold text-xl mb-2">{recipeName}</div>
 
@@ -45,6 +49,7 @@ const RecipeCard = ({ recipe }) => {
                 </div>
             </div>
         </div>
+        </LazyLoad>
     );
 };
 

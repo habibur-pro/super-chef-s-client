@@ -5,14 +5,17 @@ import LazyLoad from 'react-lazy-load';
 const FeturedCard = ({ recipe }) => {
 
     return (
-
+        <LazyLoad  >
         <div
-            className="flex my-3 glass  lg:my-auto flex-row items-center rounded-l-3xl rounded-r-md  bg-transparent bg-slate-50 bg-opacity-10 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]  ">
+                className=" flex my-3 glass card  lg:my-auto flex-row items-center rounded-l-3xl rounded-r-md  bg-transparent bg-slate-50 bg-opacity-10 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] ">
+
 
             <img
                 className="max-h-28 border border-gray-400  rounded-3xl mr-3"
                 src={recipe.recipeImage}
-                alt="" />
+                    alt=""
+                />
+
 
 
             <div className="px-2">
@@ -28,6 +31,7 @@ const FeturedCard = ({ recipe }) => {
 
             </div>
         </div>
+        </LazyLoad>
     );
 };
 

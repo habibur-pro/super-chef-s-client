@@ -5,6 +5,7 @@ import LazyLoad from 'react-lazy-load';
 import bannerFood from '../assets/bannerFood.jpg'
 const Banner = () => {
     return (
+      <LazyLoad>
       <div className=' min-h-[calc(100vh-72px)]  ' style={{
         backgroundImage: `url(${bannerFood})`,
         backgroundPosition: 'center',
@@ -26,6 +27,7 @@ const Banner = () => {
         </div>
 
         </div>
+      </LazyLoad>
     );
 };
 

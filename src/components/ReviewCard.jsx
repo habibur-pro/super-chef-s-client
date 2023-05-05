@@ -1,8 +1,10 @@
 import React from 'react';
+import LazyLoad from 'react-lazy-load';
 
 const ReviewCard = ({ review }) => {
     return (
-        <blockquote className="rounded-lg glass  p-8">
+        <LazyLoad>
+            <blockquote className="rounded-lg glass  p-8">
             <div className="lg:flex items-center gap-4">
                 <img
                     alt="Man"
@@ -17,6 +19,7 @@ const ReviewCard = ({ review }) => {
                 {review.review_text.slice(0, 99)}
             </p>
         </blockquote>
+        </LazyLoad>
     );
 };
 
